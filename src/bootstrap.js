@@ -236,6 +236,28 @@ async function importAuthors() {
   }
 }
 
+async function importServices() {
+  const services = [
+    { title: 'Email Support', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'blue', sortOrder: 1 },
+    { title: 'Phone Support', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'orange', sortOrder: 2 },
+    { title: 'Back Office Process Support', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'orange', sortOrder: 3 },
+    { title: 'Chat Support', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'blue', sortOrder: 4 },
+    { title: 'LinkedIn Marketing', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'blue', sortOrder: 5 },
+    { title: 'Technical Support', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'orange', sortOrder: 6 },
+    { title: 'Data Analytics', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'orange', sortOrder: 7 },
+    { title: 'Digital Marketing', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'blue', sortOrder: 8 },
+    { title: 'AI Integration Services', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'blue', sortOrder: 9 },
+    { title: 'Custom Software', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', iconColor: 'orange', sortOrder: 10 },
+  ];
+
+  for (const service of services) {
+    await createEntry({
+      model: 'service',
+      entry: { ...service, publishedAt: Date.now() },
+    });
+  }
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
@@ -244,6 +266,7 @@ async function importSeedData() {
     author: ['find', 'findOne'],
     global: ['find', 'findOne'],
     about: ['find', 'findOne'],
+    service: ['find', 'findOne'],
   });
 
   // Create all entries
@@ -252,6 +275,7 @@ async function importSeedData() {
   await importArticles();
   await importGlobal();
   await importAbout();
+  await importServices();
 }
 
 async function main() {
