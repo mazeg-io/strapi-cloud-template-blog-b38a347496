@@ -296,6 +296,17 @@ async function importAdvisors() {
   }
 }
 
+async function importContactInfo() {
+  await createEntry({
+    model: 'contact-info',
+    entry: {
+      email: 'info@evolvexe.com',
+      phone: '+995 511 33 19 38',
+      address: '16 Mgaloblishvili Street, 0160 Tbilisi, Georgia.',
+    },
+  });
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
@@ -307,6 +318,7 @@ async function importSeedData() {
     service: ['find', 'findOne'],
     partner: ['find', 'findOne'],
     advisor: ['find', 'findOne'],
+    'contact-info': ['find'],
   });
 
   // Create all entries
@@ -318,6 +330,7 @@ async function importSeedData() {
   await importServices();
   await importPartners();
   await importAdvisors();
+  await importContactInfo();
 }
 
 async function main() {
