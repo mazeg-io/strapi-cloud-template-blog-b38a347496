@@ -278,6 +278,24 @@ async function importPartners() {
   }
 }
 
+async function importAdvisors() {
+  const advisors = [
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 1 },
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 2 },
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 3 },
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 4 },
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 5 },
+    { name: 'Partner Name', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', sortOrder: 6 },
+  ];
+
+  for (const advisor of advisors) {
+    await createEntry({
+      model: 'advisor',
+      entry: { ...advisor, publishedAt: Date.now() },
+    });
+  }
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
@@ -288,6 +306,7 @@ async function importSeedData() {
     about: ['find', 'findOne'],
     service: ['find', 'findOne'],
     partner: ['find', 'findOne'],
+    advisor: ['find', 'findOne'],
   });
 
   // Create all entries
@@ -298,6 +317,7 @@ async function importSeedData() {
   await importAbout();
   await importServices();
   await importPartners();
+  await importAdvisors();
 }
 
 async function main() {

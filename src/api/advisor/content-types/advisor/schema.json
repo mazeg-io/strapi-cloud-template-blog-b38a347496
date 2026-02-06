@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "advisors",
+  "info": {
+    "singularName": "advisor",
+    "pluralName": "advisors",
+    "displayName": "Advisor",
+    "description": "Strategic advisors and partners displayed on the landing page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 500
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}
