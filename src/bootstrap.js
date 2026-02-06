@@ -258,6 +258,26 @@ async function importServices() {
   }
 }
 
+async function importPartners() {
+  const partners = [
+    { name: 'TechCorp Solutions', sortOrder: 1 },
+    { name: 'Global Innovations Inc', sortOrder: 2 },
+    { name: 'Digital Dynamics', sortOrder: 3 },
+    { name: 'Enterprise Systems', sortOrder: 4 },
+    { name: 'Cloud Services Pro', sortOrder: 5 },
+    { name: 'Data Analytics Group', sortOrder: 6 },
+    { name: 'Smart Solutions Ltd', sortOrder: 7 },
+    { name: 'Future Tech Partners', sortOrder: 8 },
+  ];
+
+  for (const partner of partners) {
+    await createEntry({
+      model: 'partner',
+      entry: { ...partner, publishedAt: Date.now() },
+    });
+  }
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
@@ -267,6 +287,7 @@ async function importSeedData() {
     global: ['find', 'findOne'],
     about: ['find', 'findOne'],
     service: ['find', 'findOne'],
+    partner: ['find', 'findOne'],
   });
 
   // Create all entries
@@ -276,6 +297,7 @@ async function importSeedData() {
   await importGlobal();
   await importAbout();
   await importServices();
+  await importPartners();
 }
 
 async function main() {
