@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_calculator_volume_discounts",
+  "info": {
+    "displayName": "Volume Discount",
+    "icon": "percentage",
+    "description": "Agent count threshold and its discount percentage"
+  },
+  "options": {},
+  "attributes": {
+    "minAgents": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "discountPercent": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "max": 100
+    },
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

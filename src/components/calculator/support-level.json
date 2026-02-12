@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_calculator_support_levels",
+  "info": {
+    "displayName": "Support Level",
+    "icon": "layer",
+    "description": "A support level option with its multiplier"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "multiplier": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

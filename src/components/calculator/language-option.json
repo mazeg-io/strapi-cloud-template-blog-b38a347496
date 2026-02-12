@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_calculator_language_options",
+  "info": {
+    "displayName": "Language Option",
+    "icon": "earth",
+    "description": "A language option with solo and bilingual rates"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "soloRate": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "bilingualRate": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "allowBilingual": {
+      "type": "boolean",
+      "default": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

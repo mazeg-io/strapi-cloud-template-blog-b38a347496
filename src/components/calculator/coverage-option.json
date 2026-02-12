@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_calculator_coverage_options",
+  "info": {
+    "displayName": "Coverage Option",
+    "icon": "clock",
+    "description": "A coverage hours option with its monthly hours value"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "hoursPerMonth": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

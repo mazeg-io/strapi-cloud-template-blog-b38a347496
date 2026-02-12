@@ -307,6 +307,50 @@ async function importContactInfo() {
   });
 }
 
+async function importPricingCalculator() {
+  await createEntry({
+    model: 'pricing-calculator',
+    entry: {
+      formulaDescription: '(Number of Agents) x (Language Rate) x (Coverage Hours) x (Service Channel Multiplier) x (Support Level Multiplier)',
+      currency: 'EUR',
+      annualDiscountPercent: 10,
+      serviceChannels: [
+        { label: 'Chat + Email', value: 'chat_email', multiplier: 1.0, sortOrder: 1 },
+        { label: 'Phone', value: 'phone', multiplier: 1.10, sortOrder: 2 },
+        { label: 'Combined', value: 'combined', multiplier: 1.15, sortOrder: 3 },
+      ],
+      coverageOptions: [
+        { label: 'Business Hours', value: 'business', hoursPerMonth: 168, sortOrder: 1 },
+        { label: 'Business Hours + Weekends', value: 'business_weekends', hoursPerMonth: 240, sortOrder: 2 },
+        { label: '24/7 Coverage', value: '24_7', hoursPerMonth: 720, sortOrder: 3 },
+      ],
+      supportLevels: [
+        { label: 'First level support', value: 'first_level', multiplier: 1.0, sortOrder: 1 },
+        { label: 'Second level support', value: 'second_level', multiplier: 1.3, sortOrder: 2 },
+      ],
+      languages: [
+        { label: 'English', value: 'english', soloRate: 7.50, bilingualRate: null, allowBilingual: false, sortOrder: 1 },
+        { label: 'German', value: 'german', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 2 },
+        { label: 'French', value: 'french', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 3 },
+        { label: 'Spanish', value: 'spanish', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 4 },
+        { label: 'Portuguese', value: 'portuguese', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 5 },
+        { label: 'Italian', value: 'italian', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 6 },
+        { label: 'Russian', value: 'russian', soloRate: 8.00, bilingualRate: 9.60, allowBilingual: true, sortOrder: 7 },
+        { label: 'Hindi', value: 'hindi', soloRate: 6.50, bilingualRate: 7.80, allowBilingual: true, sortOrder: 8 },
+        { label: 'Ukrainian', value: 'ukrainian', soloRate: 8.00, bilingualRate: 9.60, allowBilingual: true, sortOrder: 9 },
+        { label: 'Turkish', value: 'turkish', soloRate: 8.00, bilingualRate: 9.60, allowBilingual: true, sortOrder: 10 },
+        { label: 'Armenian', value: 'armenian', soloRate: 8.00, bilingualRate: 9.60, allowBilingual: true, sortOrder: 11 },
+        { label: 'Azerbaijani', value: 'azerbaijani', soloRate: 8.00, bilingualRate: 9.60, allowBilingual: true, sortOrder: 12 },
+        { label: 'Arabic', value: 'arabic', soloRate: 9.00, bilingualRate: 10.80, allowBilingual: true, sortOrder: 13 },
+      ],
+      volumeDiscounts: [
+        { minAgents: 10, discountPercent: 15, label: '10+ agents: 15% discount', sortOrder: 1 },
+        { minAgents: 20, discountPercent: 25, label: '20+ agents: 25% discount', sortOrder: 2 },
+      ],
+    },
+  });
+}
+
 async function importSeedData() {
   // Allow read of application content types
   await setPublicPermissions({
@@ -319,6 +363,7 @@ async function importSeedData() {
     partner: ['find', 'findOne'],
     advisor: ['find', 'findOne'],
     'contact-info': ['find'],
+    'pricing-calculator': ['find'],
   });
 
   // Create all entries
@@ -331,6 +376,7 @@ async function importSeedData() {
   await importPartners();
   await importAdvisors();
   await importContactInfo();
+  await importPricingCalculator();
 }
 
 async function main() {

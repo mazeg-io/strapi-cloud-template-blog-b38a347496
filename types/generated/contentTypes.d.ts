@@ -611,6 +611,69 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPricingCalculatorPricingCalculator
+  extends Struct.SingleTypeSchema {
+  collectionName: 'pricing_calculators';
+  info: {
+    description: 'Configuration for the dynamic pricing calculator';
+    displayName: 'Pricing Calculator';
+    pluralName: 'pricing-calculators';
+    singularName: 'pricing-calculator';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    annualDiscountPercent: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 100;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<10>;
+    coverageOptions: Schema.Attribute.Component<
+      'calculator.coverage-option',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currency: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }> &
+      Schema.Attribute.DefaultTo<'EUR'>;
+    formulaDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    languages: Schema.Attribute.Component<'calculator.language-option', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pricing-calculator.pricing-calculator'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    serviceChannels: Schema.Attribute.Component<
+      'calculator.service-channel',
+      true
+    >;
+    supportLevels: Schema.Attribute.Component<'calculator.support-level', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    volumeDiscounts: Schema.Attribute.Component<
+      'calculator.volume-discount',
+      true
+    >;
+  };
+}
+
 export interface ApiSectorSector extends Struct.CollectionTypeSchema {
   collectionName: 'sectors';
   info: {
@@ -1222,6 +1285,7 @@ declare module '@strapi/strapi' {
       'api::contact-info.contact-info': ApiContactInfoContactInfo;
       'api::global.global': ApiGlobalGlobal;
       'api::partner.partner': ApiPartnerPartner;
+      'api::pricing-calculator.pricing-calculator': ApiPricingCalculatorPricingCalculator;
       'api::sector.sector': ApiSectorSector;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;

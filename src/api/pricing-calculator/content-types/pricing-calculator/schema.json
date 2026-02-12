@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "pricing_calculators",
+  "info": {
+    "singularName": "pricing-calculator",
+    "pluralName": "pricing-calculators",
+    "displayName": "Pricing Calculator",
+    "description": "Configuration for the dynamic pricing calculator"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "formulaDescription": {
+      "type": "text",
+      "required": false,
+      "maxLength": 1000
+    },
+    "currency": {
+      "type": "string",
+      "default": "EUR",
+      "required": true,
+      "maxLength": 10
+    },
+    "annualDiscountPercent": {
+      "type": "decimal",
+      "required": true,
+      "default": 10,
+      "min": 0,
+      "max": 100
+    },
+    "serviceChannels": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.service-channel"
+    },
+    "coverageOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.coverage-option"
+    },
+    "supportLevels": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.support-level"
+    },
+    "languages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.language-option"
+    },
+    "volumeDiscounts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.volume-discount"
+    }
+  }
+}
